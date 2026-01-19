@@ -1,16 +1,20 @@
 public class Coin {
-    private double value;   // Η αξία του κέρματος
+    private final int cents; // αξία σε λεπτά
 
-    // Κατασκευαστής κέρματος
-    public Coin(double value) {
-        this.value = value;
+    public Coin(int cents) {
+        this.cents = cents;
+    }
+
+    public int getCents() {
+        return cents;
     }
 
     public double getValue() {
-        return value;
+        return cents / 100.0;
     }
 
-    public void setValue(double value) {
-        this.value = value;
+    @Override
+    public String toString() {
+        return String.format("%.2f", getValue());
     }
 }

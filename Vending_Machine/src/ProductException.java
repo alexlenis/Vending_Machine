@@ -1,7 +1,9 @@
 public class ProductException extends Exception {
-    public ProductException() {}
+    public ProductException() {
+        super();
+    }
 
     public ProductException(String message) {
-        System.out.println(message);
+        super(message);
     }
 }

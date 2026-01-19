@@ -1,32 +1,28 @@
-import java.text.DecimalFormat;
-
 public abstract class Product {
-    private String name;    // Το όνομα του προϊόντος
-    private double height;  // Το ύψος του προϊόντος
-    private double width;   // Το πλάτος του προϊόντος
-    private double length;  // Το μήκος του προϊόντος
-    private String expiryDate;  // Η ημερομηνία λήξης του προϊόντος
-    private double price;   // Η τιμή του προϊόντος χωρίς τον ΦΠΑ
-    private String brand;   // Η μάρκα του προϊόντος
+    private String name;
+    private double height;
+    private double width;
+    private double length;
+    private String expiryDate;
+    private int priceCents;   // τιμή χωρίς ΦΠΑ σε cents
+    private String brand;
 
-    // Κατασκευαστής προϊόντος
-    public Product(String name, String brand, double height, double width, double length, String expiryDate, double price) {
+    public Product(String name, String brand, double height, double width, double length, String expiryDate, int priceCents) {
         this.name = name;
         this.brand = brand;
         this.height = height;
         this.width = width;
         this.length = length;
         this.expiryDate = expiryDate;
-        this.price = price;
+        this.priceCents = priceCents;
     }
 
-    // Getters μέθοδοι
     public String getName() {
         return name;
     }
 
-    public double getPrice() {
-        return price;
+    public int getPriceCents() {
+        return priceCents;
     }
 
     public String getBrand() {
@@ -49,13 +45,12 @@ public abstract class Product {
         return expiryDate;
     }
 
-    // Setters μέθοδοι
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setPriceCents(int priceCents) {
+        this.priceCents = priceCents;
     }
 
     public void setBrand(String brand) {
@@ -78,17 +73,21 @@ public abstract class Product {
         this.expiryDate = expiryDate;
     }
 
-    // Υπολογισμός της τελικής τιμής του προϊόντος συμπεριλαμβανομένου του ΦΠΑ 24%
-    public double getFinalPrice() {
-        DecimalFormat df = new DecimalFormat("0.00");
-        double res = this.price * (1 + 0.24);
-        return Double.parseDouble(df.format(res));
+    // default ΦΠΑ 24%
+    public int getFinalPriceCents() {
+        return (int) Math.round(priceCents * 1.24);
     }
 
-    // Έλεγχος για όμοια προϊόντα (με ίδια χαρακτηριστικά)
+    public double getFinalPrice() {
+        return getFinalPriceCents() / 100.0;
+    }
+
     public boolean compareProducts(Product product) {
-        return name.equals(product.getName()) && height == product.getHeight()
-                && width == product.getWidth() && length == product.getLength() && price == product.getPrice()
+        return name.equals(product.getName())
+                && Double.compare(height, product.getHeight()) == 0
+                && Double.compare(width, product.getWidth()) == 0
+                && Double.compare(length, product.getLength()) == 0
+                && priceCents == product.getPriceCents()
                 && brand.equals(product.getBrand());
     }
 }

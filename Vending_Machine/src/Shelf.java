@@ -1,12 +1,11 @@
 import java.util.ArrayList;
 
 public class Shelf {
-    private double height;  // Το ύψος του ραφιού
-    private double width;   // Το πλάτος του ραφιού
-    private double depth;   // Το βάθος του ραφιού
-    private ArrayList<Position> positions;  // Λίστα με τις θέσεις του ραφιού
+    private double height;
+    private double width;
+    private double depth;
+    private ArrayList<Position> positions;
 
-    // Κατασκευαστής ραφιού
     public Shelf(double height, double width, double depth) {
         this.height = height;
         this.width = width;
@@ -14,17 +13,14 @@ public class Shelf {
         positions = new ArrayList<>();
     }
 
-    // Προσθήκη νέας θέσης στο ράφι
     public void addPosition(Position position) {
         positions.add(position);
     }
 
-    // Αφαίρεση θέσεις από το ράφι
     public void removePosition(Position position) {
         positions.remove(position);
     }
 
-    // Getters μέθοδοι
     public double getHeight() {
         return height;
     }
@@ -41,7 +37,6 @@ public class Shelf {
         return positions;
     }
 
-    // Setters μέθοδοι
     public void setHeight(double height) {
         this.height = height;
     }

@@ -1,9 +1,9 @@
 public class SolidProduct extends Product {
-    private double weight;  // Το βάρος σε gr του προϊόντος σε στερεά μορφή
+    private double weight;  // grams
 
-    // Κατασκευαστής προϊόντος σε στερεά μορφή
-    public SolidProduct(String name, String brand, double height, double width, double length, String expiryDate, double price, double weight) {
-        super(name, brand, height, width, length, expiryDate, price);   // κλήση κατασκευαστή της υπερκλάσης
+    public SolidProduct(String name, String brand, double height, double width, double length,
+                        String expiryDate, int priceCents, double weight) {
+        super(name, brand, height, width, length, expiryDate, priceCents);
         this.weight = weight;
     }
 

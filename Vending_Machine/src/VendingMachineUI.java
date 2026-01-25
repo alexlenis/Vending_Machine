@@ -9,7 +9,8 @@ public class VendingMachineUI {
     private VendingMachine machine;
     private JFrame frame;
     private JPanel gridPanel;
-    private JTextArea detailsArea;
+    private JTextArea detailsArea; 
+    
     private JLabel statusLabel;
 
     public VendingMachineUI(VendingMachine machine) {
